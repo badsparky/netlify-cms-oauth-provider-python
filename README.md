@@ -72,4 +72,5 @@ With your virtual environment activated run the server as follows
 ### Google Cloud Run
 When deploying to Cloud Run the container must listen on the port provided in
 the `PORT` environment variable. The default configuration already uses this
-value if present, and the Dockerfile exposes port `8080`.
+value if present and otherwise falls back to port `8080`. The Dockerfile also
+exposes port `8080`.
