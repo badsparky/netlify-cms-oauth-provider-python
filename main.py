@@ -1,13 +1,17 @@
-from requests_oauthlib import OAuth2Session
-from flask import Flask, request, redirect
+from __future__ import annotations
+
 import json
 import os
-from os.path import join, dirname
+import secrets
+from pathlib import Path
+
 from dotenv import load_dotenv
+from flask import Flask, redirect, request
+from requests_oauthlib import OAuth2Session
 
 app = Flask(__name__)
 
-load_dotenv(join(dirname(__file__), '.env'))
+load_dotenv(Path(__file__).with_name('.env'))
 client_id = os.environ.get("OAUTH_CLIENT_ID")
 client_secret = os.environ.get("OAUTH_CLIENT_SECRET")
 authorization_base_url = 'https://github.com/login/oauth/authorize'
@@ -42,7 +46,7 @@ def callback():
         token = github.fetch_token(token_url, client_secret=client_secret, authorization_response=request.url)
         content = json.dumps({'token': token.get('access_token', ''), 'provider': 'github'})
         message = 'success'
-    except BaseException as e:
+    except Exception as e:
         message = 'error'
         content = str(e)
     post_message = json.dumps('authorization:github:{0}:{1}'.format(message, content))
@@ -78,7 +82,7 @@ if __name__ == "__main__":
         os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
     else:
         run_config = {'ssl_context': 'adhoc'}
-    app.secret_key = os.urandom(24)
+    app.secret_key = secrets.token_hex(24)
 
     app.run(
             host=os.environ.get('RUN_HOST', '127.0.0.1'),
