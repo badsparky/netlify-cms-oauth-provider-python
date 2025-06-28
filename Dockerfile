@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.12-slim
 
 ENV RUN_HOST="0.0.0.0"
 ENV RUN_PORT=80
@@ -6,14 +6,12 @@ ENV RUN_PORT=80
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY requirements.txt /usr/src/app/
+COPY requirements.txt ./
 
-RUN pip3 install --no-cache-dir -r requirements.txt 
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . /usr/src/app
+COPY . .
 
 EXPOSE 80
 
-ENTRYPOINT ["python3"]
-
-CMD ["main.py"]
+CMD ["python", "main.py"]

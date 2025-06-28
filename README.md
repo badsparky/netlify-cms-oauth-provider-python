@@ -2,6 +2,8 @@
 
 [netlify-cms](https://www.netlifycms.org/) has its own github OAuth client. This is a python implementation based on the [Node.js](https://github.com/vencax/netlify-cms-github-oauth-provider) version.
 
+This project now targets **Python 3.12+** and uses the latest versions of its dependencies.
+
 Other implementations
 - [Go lang](https://github.com/igk1972/netlify-cms-oauth-provider-go)
 - [Node.js](https://github.com/vencax/netlify-cms-github-oauth-provider)
@@ -12,7 +14,7 @@ For mac and linux
 ```
 git clone https://github.com/davidejones/netlify-cms-oauth-provider-python.git
 cd netlify-cms-oauth-provider-python
-python -m venv /path/to/new/virtual/environment
+python3 -m venv /path/to/new/virtual/environment
 source /path/to/new/virtual/environment/bin/activate
 pip install -r requirements.txt
 ```
@@ -21,7 +23,7 @@ For windows
 ```
 git clone https://github.com/davidejones/netlify-cms-oauth-provider-python.git
 cd netlify-cms-oauth-provider-python
-python -m venv /path/to/new/virtual/environment
+python3 -m venv /path/to/new/virtual/environment
 C:\path\to\new\virtual\environment\bin\activate.bat
 pip install -r requirements.txt
 ```
