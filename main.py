@@ -84,9 +84,6 @@ if __name__ == "__main__":
         run_config = {'ssl_context': 'adhoc'}
     app.secret_key = secrets.token_hex(24)
 
-    app.run(
-            host=os.environ.get('RUN_HOST', '127.0.0.1'),
-            port=int(os.environ.get('RUN_PORT', 5000)),
-            debug=True,
-            **run_config
-            )
+    host = os.environ.get("RUN_HOST", "127.0.0.1")
+    port = int(os.environ.get("PORT", os.environ.get("RUN_PORT", 5000)))
+    app.run(host=host, port=port, debug=True, **run_config)

@@ -68,3 +68,8 @@ backend:
 With your virtual environment activated run the server as follows
 
 `python main.py`
+
+### Google Cloud Run
+When deploying to Cloud Run the container must listen on the port provided in
+the `PORT` environment variable. The default configuration already uses this
+value if present, and the Dockerfile exposes port `8080`.
